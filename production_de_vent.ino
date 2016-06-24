@@ -23,7 +23,7 @@ bool Etat_Bouton;
 int Instructions, Plus, Moins;
 
 /* Affichage */	
-int Digits[10] = {		// Tableau d'affichage des chiffres
+int Afficheurs[10] = {		// Tableau d'affichage des chiffres
 	B00111111 , // 0
 	B00000110 , // 1
 	B01011011 , // 2
@@ -44,7 +44,7 @@ int Dizaines[7] = {
 	13 ,	// f
 	12	};	// g
 
-int Unitees[7] = {
+int Unites[7] = {
 	 4 ,	// a
 	 3 , 	// b
 	 2 , 	// c
@@ -99,16 +99,16 @@ void loop() {
 	Moins = Etat_Bouton;
 
 	// Affichage
-	AffichageDigits(1, Digits[Instructions / 10]);		// Donc ici, on est sur le digit des dizaines. Si j'ai Instructions = 14, alors le chiffre est divisé par 10 : ça fait 1,4, donc il reste le 1 avant la virgule (je pense que c'est parce que c'est un entier), et donc le chiffre "1" est affiché.
-	AffichageDigits(2, Digits[(Instructions) % 10]);	//C'est pareil mais avec les unités, qu'on sélectionne avec le chiffre pourcentage.
+	Affichage(1, Afficheurs[Instructions / 10]);		// Donc ici, on est sur le digit des dizaines. Si j'ai Instructions = 14, alors le chiffre est divisé par 10 : ça fait 1,4, donc il reste le 1 avant la virgule (je pense que c'est parce que c'est un entier), et donc le chiffre "1" est affiché.
+	Affichage(2, Afficheurs[(Instructions) % 10]);	//C'est pareil mais avec les unités, qu'on sélectionne avec le chiffre pourcentage.
 	delay(50);
 }
 
-void AffichageDigits(int Segment, int Digit) {
+void Affichage(int Segment, int Digit) {
 	if(Digit==0){
 	    return;
 	}
-	int* Segment_Actuel = ((Segment == 1) ? Dizaines : Unitees); // choix du Segment (à l'aide d'un pointeur, identifié ici par "*")
+	int* Segment_Actuel = ((Segment == 1) ? Dizaines : Unites); // choix du Segment (à l'aide d'un pointeur, identifié ici par "*")
 	for (int i = 0; i < 7; ++i) {
 		digitalWrite(Segment_Actuel[i], Digit & 1); // writes the least significant bit
 		Digit >>= 1;
