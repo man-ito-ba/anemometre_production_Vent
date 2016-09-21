@@ -3,15 +3,11 @@
 // un afficheur donne le résultat
 // le moteur envoie plus ou moins de vent
 
-
 /*
-
 3 parties :
-
 1. Instructions données au moteur PWM à partir de 2 boutons + et -
 2. Affichage des consignes sur deux afficheurs à 7 segments
 3. Accélération ou décélération du moteur PWM en fonction des consignes
-
 */
 
 /*Code Capteur & Deux Afficheurs*/
@@ -21,6 +17,10 @@ int BoutonPlus = A0;
 int BoutonMoins = A1;
 bool Etat_Bouton;
 int Instructions, Plus, Moins;
+
+// pin PWM
+const int SortiePWM = 6;
+int InstructionsPWM;
 
 /* Affichage */	
 int Afficheurs[10] = {		// Tableau d'affichage des chiffres
@@ -50,7 +50,7 @@ int Unites[7] = {
 	 2 , 	// c
 	 A5 , 	// d
 	 A4 ,	// e
-	 6 ,	// f
+	 A3 ,	// f
 	 5 };	// g
 
 void setup() {
@@ -60,8 +60,10 @@ void setup() {
 	}
 	pinMode(BoutonPlus, INPUT);
 	pinMode(BoutonMoins, INPUT);
-	Etat_Bouton, Plus, Moins, Instructions = 0;
+	Etat_Bouton, Plus, Moins, Instructions, InstructionsPWM = 0;
 
+	pinMode(A3, OUTPUT);
+	digitalWrite(A3, LOW);
 	pinMode(A5, OUTPUT);
 	digitalWrite(A5, LOW);
 	pinMode(A4, OUTPUT);
@@ -98,10 +100,18 @@ void loop() {
 	}
 	Moins = Etat_Bouton;
 
+	// Mise en marche du moteur PWM
+	InstructionsPWM = map(Instructions, 0, 20, 0, 255);	// À toi de changer la valeur max en la passant peut-être à 254 si le moteur est fragile.
+	analogWrite(SortiePWM, InstructionsPWM);			// C'est ici que les Instructions sont utilisées concrètement pour contrôler le moteur
+	Serial.print(Instructions);
+	Serial.print(" / ");
+	Serial.println(InstructionsPWM);
+
 	// Affichage
 	Affichage(1, Afficheurs[Instructions / 10]);		// Donc ici, on est sur le digit des dizaines. Si j'ai Instructions = 14, alors le chiffre est divisé par 10 : ça fait 1,4, donc il reste le 1 avant la virgule (je pense que c'est parce que c'est un entier), et donc le chiffre "1" est affiché.
 	Affichage(2, Afficheurs[(Instructions) % 10]);	//C'est pareil mais avec les unités, qu'on sélectionne avec le chiffre pourcentage.
-	delay(50);
+	
+	delay(10);
 }
 
 void Affichage(int Segment, int Digit) {
