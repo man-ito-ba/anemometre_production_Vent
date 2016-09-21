@@ -18,7 +18,7 @@ int BoutonMoins = A1;
 bool Etat_Bouton;
 int Instructions, Plus, Moins;
 
-// pin PWM
+// partie PWM
 const int SortiePWM = 6;
 int InstructionsPWM;
 
@@ -35,6 +35,7 @@ int Afficheurs[10] = {		// Tableau d'affichage des chiffres
 	B01111111 , // 8
 	B01101111 };
 
+// Adressage
 int Dizaines[7] = {
 	11 ,	// a
 	10 ,	// b
@@ -111,7 +112,7 @@ void loop() {
 	Affichage(1, Afficheurs[Instructions / 10]);		// Donc ici, on est sur le digit des dizaines. Si j'ai Instructions = 14, alors le chiffre est divisé par 10 : ça fait 1,4, donc il reste le 1 avant la virgule (je pense que c'est parce que c'est un entier), et donc le chiffre "1" est affiché.
 	Affichage(2, Afficheurs[(Instructions) % 10]);	//C'est pareil mais avec les unités, qu'on sélectionne avec le chiffre pourcentage.
 	
-	delay(10);
+	delay(1); 	// à toi de le virer de toute manière si tu le souhaites
 }
 
 void Affichage(int Segment, int Digit) {
