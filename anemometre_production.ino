@@ -13,14 +13,18 @@
 /*Code Capteur & Deux Afficheurs*/
 
 /* Instructions */
-int BoutonPlus = A0;
-int BoutonMoins = A1;
+int BoutonPlus = A2;
+int BoutonMoins = A3;
 bool Etat_Bouton;
 int Instructions, Plus, Moins;
 
 // partie PWM
-const int SortiePWM = 6;
-int InstructionsPWM;
+const int SortiePWM = 9;
+// Les deux déclarations suivantes sont là au cas où mais je ne les utilise pas
+// int sortie_tension  = 11; 	// sortie tension modulé par B.P. vers A0 (il s'agit d'une ligne de code que j'ai pris de chez ton code destiné au UNO)
+// int DistancePWM     = A0;	// PIN de conversion analogique digitale du module arduino, utilisé pour lire la tension du B.P. qui sert d'accélérateur sortie en PIN 11 (pareil, ça vient de ton programme, je ne comprends pas son rôle)
+
+int InstructionsPWM;		// variable qui sera utilisée plus tard pour le contrôle de la vitesse du moteur
 
 /* Affichage */	
 int Afficheurs[10] = {		// Tableau d'affichage des chiffres
@@ -37,11 +41,11 @@ int Afficheurs[10] = {		// Tableau d'affichage des chiffres
 
 // Adressage
 int Dizaines[7] = {
-	11 ,	// a
+	 1 ,	// a
 	10 ,	// b
 	 7 ,	// c
 	 8 , 	// d
-	 9 ,	// e
+	 6 ,	// e
 	13 ,	// f
 	12	};	// g
 
@@ -51,7 +55,7 @@ int Unites[7] = {
 	 2 , 	// c
 	 A5 , 	// d
 	 A4 ,	// e
-	 A3 ,	// f
+	 0 ,	// f
 	 5 };	// g
 
 void setup() {
@@ -59,21 +63,17 @@ void setup() {
 		pinMode(i, OUTPUT);
 		digitalWrite(i, LOW);
 	}
+
+	// Boutons
 	pinMode(BoutonPlus, INPUT);
 	pinMode(BoutonMoins, INPUT);
 	Etat_Bouton, Plus, Moins, Instructions, InstructionsPWM = 0;
 
-	pinMode(A3, OUTPUT);
-	digitalWrite(A3, LOW);
-	pinMode(A5, OUTPUT);
-	digitalWrite(A5, LOW);
 	pinMode(A4, OUTPUT);
 	digitalWrite(A4, LOW);
+	pinMode(A5, OUTPUT);
+	digitalWrite(A5, LOW);
 
-		//initialisation du Port série
-		Serial.begin(9600);
-		Serial.println("***************");
-		Serial.println("Start");
 }
 
 void loop() {
@@ -104,9 +104,6 @@ void loop() {
 	// Mise en marche du moteur PWM
 	InstructionsPWM = map(Instructions, 0, 20, 0, 255);	// À toi de changer la valeur max en la passant peut-être à 254 si le moteur est fragile.
 	analogWrite(SortiePWM, InstructionsPWM);			// C'est ici que les Instructions sont utilisées concrètement pour contrôler le moteur
-	Serial.print(Instructions);
-	Serial.print(" / ");
-	Serial.println(InstructionsPWM);
 
 	// Affichage
 	Affichage(1, Afficheurs[Instructions / 10]);		// Donc ici, on est sur le digit des dizaines. Si j'ai Instructions = 14, alors le chiffre est divisé par 10 : ça fait 1,4, donc il reste le 1 avant la virgule (je pense que c'est parce que c'est un entier), et donc le chiffre "1" est affiché.
