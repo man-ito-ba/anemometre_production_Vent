@@ -68,7 +68,24 @@ int Unites[7] = {
 
 void setup()//Initialise l'utilisation des PINs de l'arduino
 {
-	analogReference(DEFAULT);		// référence du convertisseur (je ne comprends pas pourquoi tu utilises cette fonction ; elle est utile quand le pin AREF est utilisé, mais surtout quand le voltage de référence a été modifié à un autre moment tu programme (en appelant par exemple "analogReference(EXTERNAL);" par exemple). Là ce ne semble pas être le cas, si ? Dans loop, tu utilises la même fonction analogReference(DEFAULT). Donc en théorie, puisqu'à aucun moment le programme ne demande de prendre en compte une autre valeur de voltage, il me semble que ton convertisseur continue à convertir ton entrée entre 0 et 5 V.)
+	// broches liées à l'affichage
+	for(int i=0; i<8; i++){
+	    pinMode(i, OUTPUT);
+	    digitalWrite(i, LOW);
+	}
+	for(int i=11; i<13; i++){
+	    pinMode(i, OUTPUT);
+	    digitalWrite(i, LOW);
+	}
+
+	pinMode(A4, OUTPUT);
+		digitalWrite(A4, LOW);
+	pinMode(A5, OUTPUT);
+		digitalWrite(A5, LOW);
+	pinMode(A6, OUTPUT);
+		digitalWrite(A6, LOW);
+	pinMode(A7, OUTPUT);
+		digitalWrite(A7, LOW);
 	
 	pinMode(btn_plus, INPUT);		
 	pinMode(btn_minus, INPUT);
