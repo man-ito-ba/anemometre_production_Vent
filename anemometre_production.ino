@@ -77,10 +77,17 @@ void setup() {
 }
 
 void loop() {
-	/*Etat_Bouton = digitalRead(BoutonPlus);
-	Serial.println(Etat_Bouton);*/
+	InstructionsOperateur();						// Instructions
+
+	PWM();											// Mise en marche du moteur PWM
+
+	Affichage(1, Afficheurs[Instructions / 10]);	// Affichage dizaines
+	Affichage(2, Afficheurs[(Instructions) % 10]);	// Affichage unités
 	
-	// Instructions
+	delay(1); 										// à toi de le virer de toute manière si tu le souhaites
+}
+
+void InstructionsOperateur(){
 	Etat_Bouton = digitalRead(BoutonPlus);
 	if( Etat_Bouton != Plus && Etat_Bouton == 1 ){
 		Instructions = Instructions + 4;
@@ -100,16 +107,11 @@ void loop() {
 	    Instructions = Instructions - 4;
 	}
 	Moins = Etat_Bouton;
+}
 
-	// Mise en marche du moteur PWM
+void PWM(){
 	InstructionsPWM = map(Instructions, 0, 20, 0, 255);	// À toi de changer la valeur max en la passant peut-être à 254 si le moteur est fragile.
 	analogWrite(SortiePWM, InstructionsPWM);			// C'est ici que les Instructions sont utilisées concrètement pour contrôler le moteur
-
-	// Affichage
-	Affichage(1, Afficheurs[Instructions / 10]);		// Donc ici, on est sur le digit des dizaines. Si j'ai Instructions = 14, alors le chiffre est divisé par 10 : ça fait 1,4, donc il reste le 1 avant la virgule (je pense que c'est parce que c'est un entier), et donc le chiffre "1" est affiché.
-	Affichage(2, Afficheurs[(Instructions) % 10]);	//C'est pareil mais avec les unités, qu'on sélectionne avec le chiffre pourcentage.
-	
-	delay(1); 	// à toi de le virer de toute manière si tu le souhaites
 }
 
 void Affichage(int Segment, int Digit) {
@@ -118,7 +120,7 @@ void Affichage(int Segment, int Digit) {
 	}
 	int* Segment_Actuel = ((Segment == 1) ? Dizaines : Unites); // choix du Segment (à l'aide d'un pointeur, identifié ici par "*")
 	for (int i = 0; i < 7; ++i) {
-		digitalWrite(Segment_Actuel[i], Digit & 1); // writes the least significant bit
+		digitalWrite(Segment_Actuel[i], Digit & 1); // on écrit le bit le moins signifiant
 		Digit >>= 1;
 	}
 }
