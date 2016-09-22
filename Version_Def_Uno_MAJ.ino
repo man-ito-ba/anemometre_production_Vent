@@ -80,6 +80,8 @@ int Unites[7] = {
 // ****************************************************************************
 // *                            fonction de mesure                            *
 // ****************************************************************************
+// Alors en général je place toujours les fonctions en bas, après la fonction loop puisque setup() et loop() sont en général celles qui définissent un programme, mais savoir pourquoi, sur tes deux fonctions, celle-ci fait planter le programme si je ne la laisse pas avant setup :/
+
 void mesures(void) // fonction appelée pour mesurer l'entrée analogique
 {
 	vitesse = 0;
@@ -91,9 +93,11 @@ void mesures(void) // fonction appelée pour mesurer l'entrée analogique
 	vitesse = (vitesse >>4);
 }
 
+
 // ****************************************************************************
 // *                                   setup                                  *
 // ****************************************************************************
+
 void setup()//Initialise l'utilisation des PINs de l'arduino
 {
 	pinMode(sortie_servo,OUTPUT);	// PIN D11 en sortie
@@ -113,15 +117,14 @@ void setup()//Initialise l'utilisation des PINs de l'arduino
 // ****************************************************************************
 // *                             boucle principale                            *
 // ****************************************************************************
+
 void loop()
 {
+	/* Discussion avec Flo */
 	// valeur pwm enregistrée jusqu'à ce que le reste du programme soit effectué
 	// pendant calcul de la moyenne et de l'affichage
 
-	// un programme qui s'effectue en fond pendant que tu en fais un autre
-
-	// 1. vérifier mon adressage
-	// 2. intégrer les digits sur son programme
+	// est-ce possible : un programme qui s'effectue en fond pendant que tu en fais un autre ?
 
 	while(1)
 	{
@@ -205,6 +208,7 @@ void loop()
 // ****************************************************************************
 // *                      fonction d'impulsion du moteur                      *
 // ****************************************************************************
+
 void faire_pulse(int commande)
 {
 	// On utilise une largeur minimale d'impulsion de 0,99 ms
@@ -221,6 +225,7 @@ void faire_pulse(int commande)
 // ****************************************************************************
 // *                           fonction d'affichage                           *
 // ****************************************************************************
+
 void Affichage(int Segment, int Digit) {
 	if(Digit==0){
 	    return;
