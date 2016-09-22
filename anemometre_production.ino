@@ -58,6 +58,11 @@ int Unites[7] = {
 	 0 ,	// f
 	 5 };	// g
 
+
+// ****************************************************************************
+// *                                   setup                                  *
+// ****************************************************************************
+
 void setup() {
 	for (int i = 0; i <= 13; ++i){
 		pinMode(i, OUTPUT);
@@ -76,8 +81,13 @@ void setup() {
 
 }
 
+
+// ****************************************************************************
+// *                             boucle principale                            *
+// ****************************************************************************
+
 void loop() {
-	InstructionsOperateur();						// Instructions
+	InstructionsOperateur();						// Instructions par les boutons + et –
 
 	PWM();											// Mise en marche du moteur PWM
 
@@ -86,6 +96,11 @@ void loop() {
 	
 	delay(1); 										// à toi de le virer de toute manière si tu le souhaites
 }
+
+
+// ****************************************************************************
+// *                       Instructions par les boutons                       *
+// ****************************************************************************
 
 void InstructionsOperateur(){
 	Etat_Bouton = digitalRead(BoutonPlus);
@@ -109,10 +124,20 @@ void InstructionsOperateur(){
 	Moins = Etat_Bouton;
 }
 
+
+// ****************************************************************************
+// *                                Moteur PWM                                *
+// ****************************************************************************
+
 void PWM(){
 	InstructionsPWM = map(Instructions, 0, 20, 0, 255);	// À toi de changer la valeur max en la passant peut-être à 254 si le moteur est fragile.
 	analogWrite(SortiePWM, InstructionsPWM);			// C'est ici que les Instructions sont utilisées concrètement pour contrôler le moteur
 }
+
+
+// ****************************************************************************
+// *                          Affichage double digit                          *
+// ****************************************************************************
 
 void Affichage(int Segment, int Digit) {
 	if(Digit==0){
