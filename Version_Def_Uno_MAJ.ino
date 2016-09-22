@@ -90,7 +90,8 @@ void mesures(void) // fonction appelée pour mesurer l'entrée analogique
 	{
 		vitesse += analogRead(distance); 	// Notation qui équivaut à écrire : "vitesse = vitesse + analogRead(distance);"
 	}
-	vitesse = (vitesse >> 4);				// Alors ça c'est un bitshift right si j'ai bien suivi, c.à.d. une autre façon d'effectuer une multiplication (ici, par 4). D'après mes recherches, utiliser le signe de multiplication dans ce type de cas est bien plus clair pour ceux qui relisent le code, et absolument **aussi pratique**.
+	// vitesse = (vitesse >> 4);				// Alors ça c'est un bitshift right si j'ai bien suivi, c.à.d. une autre façon d'effectuer une multiplication (ici, par 4). D'après mes recherches, utiliser le signe de multiplication dans ce type de cas est bien plus clair pour ceux qui relisent le code, et absolument **aussi pratique**.
+	vitesse = vitesse * 4;
 }
 
 
@@ -105,7 +106,7 @@ void setup()//Initialise l'utilisation des PINs de l'arduino
 	
 	pinMode(distance, INPUT);
 	
-	Serial.begin(9600);
+	// Serial.begin(9600);			// Comme on utilise les pins 0 et 1, je désactive l'engagement du Serial qui va sinon géner l'emploi de ces pins (ils assurant la transmission et réception de donnée avec le Serial)
 	
 	analogReference(DEFAULT);		// référence du convertisseur (je ne comprends pas pourquoi tu utilises cette fonction ; elle est utile quand le pin AREF est utilisé, mais surtout quand le voltage de référence a été modifié à un autre moment tu programme (en appelant par exemple "analogReference(EXTERNAL);" par exemple). Là ce ne semble pas être le cas, si ? Dans loop, tu utilises la même fonction analogReference(DEFAULT). Donc en théorie, puisqu'à aucun moment le programme ne demande de prendre en compte une autre valeur de voltage, il me semble que ton convertisseur continue à convertir ton entrée entre 0 et 5 V.)
 	
@@ -120,12 +121,6 @@ void setup()//Initialise l'utilisation des PINs de l'arduino
 
 void loop()
 {
-	/* Discussion avec Flo */
-	// valeur pwm enregistrée jusqu'à ce que le reste du programme soit effectué
-	// pendant calcul de la moyenne et de l'affichage
-
-	// est-ce possible : un programme qui s'effectue en fond pendant que tu en fais un autre ?
-
 	while(1)
 	{
 		EtatBouton();
@@ -140,10 +135,8 @@ void loop()
 		
 		faire_pulse(vitesse);							// fonction qui génère l'impulsion
 
-		int Instructions = DIST * 4;						// Ici je multiplie DIST par 4 pour obtenir un chiffre entre 0 et 20, ce qui correspond à ce qui sera affiché sur les 2 digits (note : j'ai plus tard découvert que la variable "vitesse" correspondait exactement à ce que je viens de faire, mais je ne savais pas lire, à l'époque, les notations bitshift de type ">>". Donc dans l'absolu on peut, dans la fonction affichage juste en dessous de cette ligne, remplacer "Instructions" par "vitesse", mais comme je ne peux pas débugger sur place je laisse comme ça pour l'instant).
-
-		Affichage(1, Afficheurs[Instructions   / 10]);	// Affichage dizaines
-		Affichage(2, Afficheurs[(Instructions) % 10]);	// Affichage unités
+		Affichage(1, Afficheurs[vitesse   / 10]);		// Affichage dizaines
+		Affichage(2, Afficheurs[(vitesse) % 10]);		// Affichage unités
 
 		while( (micros()-debut_periode) < 19999); 
 		// attendre les 20 millisecondes pour faire la période suivante 
