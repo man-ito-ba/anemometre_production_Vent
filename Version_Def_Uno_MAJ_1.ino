@@ -57,22 +57,43 @@ int Afficheurs[10] = {		// Tableau d'affichage des chiffres
 	B01111111 , // 8
 	B01101111 };
 
+/* Infos données par F. pour l'adressage :
+	Dizaines
+		a = D4
+		f = D12
+		e = D6
+		d = A6
+		c = D7
+		g = D11
+		b = A7
+
+	Unités
+		a = D1
+		f = D0
+		e = A5
+		d = A4
+		c = D2
+		g = D5
+		b = D3
+
+	*/
+
 // Adressage
 int Dizaines[7] = {
-	 1 ,	// a
-	10 ,	// b
+	 4 ,	// a
+	A7 ,	// b
 	 7 ,	// c
-	 8 , 	// d
+	A6 , 	// d
 	 6 ,	// e
-	13 ,	// f
-	12	};	// g
+	12 ,	// f
+	11	};	// g
 
 int Unites[7] = {
-	 4 ,	// a
+	 1 ,	// a
 	 3 , 	// b
 	 2 , 	// c
-	 A5 , 	// d
-	 A4 ,	// e
+	 A4 , 	// d
+	 A5 ,	// e
 	 0 ,	// f
 	 5 };	// g
 
