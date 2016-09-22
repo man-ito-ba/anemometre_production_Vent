@@ -10,6 +10,31 @@
 3. Accélération ou décélération du moteur PWM en fonction des consignes
 */
 
+/*	Un point sur les branchements
+
+	A0		distance
+	A1
+	A2		btn_plus
+	A3		btn_minus
+	A4		digit des dizaines "e"
+	A5		digit des dizaines "d"
+
+	D0		digit des dizaines "f"
+	D1		digit des unités "a"
+	D2		digit des dizaines "c"
+	D3		digit des dizaines "b"
+	D4		digit des dizaines "a"
+	D5		digit des dizaines "g"
+	D6		digit des unités "e"
+	D7		digit des unités "c"
+	D8		digit des unités "d"
+	D9		sortie_servo
+	D10		digit des unités "b"
+	D11		sortie_tension
+	D12		digit des unités "g"
+	D13		digit des unités "f"
+*/
+
 /*Code Capteur & Deux Afficheurs*/
 
 /* Instructions */

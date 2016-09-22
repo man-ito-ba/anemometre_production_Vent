@@ -1,6 +1,32 @@
 // Contrôle commande de moteur brushless de modélisme
 // Sortie des impulsions vers le contrôleur par D13.
 
+
+/*	Un point sur les branchements
+
+	A0		distance
+	A1
+	A2		btn_plus
+	A3		btn_minus
+	A4		digit des dizaines "e"
+	A5		digit des dizaines "d"
+
+	D0		digit des dizaines "f"
+	D1		digit des unités "a"
+	D2		digit des dizaines "c"
+	D3		digit des dizaines "b"
+	D4		digit des dizaines "a"
+	D5		digit des dizaines "g"
+	D6		digit des unités "e"
+	D7		digit des unités "c"
+	D8		digit des unités "d"
+	D9		sortie_servo
+	D10		digit des unités "b"
+	D11		sortie_tension
+	D12		digit des unités "g"
+	D13		digit des unités "f"
+*/
+
 int vitesse = 0;			// Valeur de la mesure de la tension du potentionmère sur A0
 unsigned int temps_pulse;	// largeur d'impulsion de la sortie
 
@@ -174,6 +200,7 @@ void loop()
 		// attendre les 20 millisecondes pour faire la période suivante 
 	}	
 }
+
 
 // ****************************************************************************
 // *                      fonction d'impulsion du moteur                      *
