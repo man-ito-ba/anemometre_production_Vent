@@ -155,4 +155,6 @@ void Affichage(int Segment, int Digit) {
 		digitalWrite(Segment_Actuel[i], Digit & 1); // on écrit le bit le moins signifiant
 		Digit >>= 1;
 	}
+
+	delay(30);
 }
