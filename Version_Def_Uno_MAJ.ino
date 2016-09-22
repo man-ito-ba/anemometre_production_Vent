@@ -88,9 +88,9 @@ void mesures(void) // fonction appelée pour mesurer l'entrée analogique
 	//la valeur nommée vitesse est moyennée pour diminuer l'effet du bruit de cette valeur analogique
 	for(int ii=0; ii<16; ii++)
 	{
-	vitesse += analogRead(distance);
+		vitesse += analogRead(distance); 	// Notation qui équivaut à écrire : "vitesse = vitesse + analogRead(distance);"
 	}
-	vitesse = (vitesse >>4);
+	vitesse = (vitesse >> 4);				// Alors ça c'est un bitshift si j'ai bien suivi, c.à.d. une autre façon d'effectuer une multiplication (ici, par 4). D'après mes recherches, utiliser le signe de multiplication dans ce type de cas est bien plus clair pour ceux qui relisent le code, et absolument **aussi pratique**.
 }
 
 
@@ -194,7 +194,7 @@ void loop()
 		mesures(); 										// prendre la tension du potentiomètre accélérateur
 		faire_pulse(vitesse);							// fonction qui génère l'impulsion
 
-		int Instructions = DIST*4;						// Ici je multiplie DIST par 4 pour obtenir un chiffre entre 0 et 20, ce qui correspond à ce qui sera affiché sur les 2 digits.
+		int Instructions = DIST * 4;						// Ici je multiplie DIST par 4 pour obtenir un chiffre entre 0 et 20, ce qui correspond à ce qui sera affiché sur les 2 digits (note : j'ai plus tard découvert que la variable "vitesse" correspondait exactement à ce que je viens de faire, mais je ne savais pas lire, à l'époque, les notations bitshift de type ">>". Donc dans l'absolu on peut, dans la fonction affichage juste en dessous de cette ligne, remplacer "Instructions" par "vitesse", mais comme je ne peux pas débugger sur place je laisse comme ça pour l'instant).
 
 		Affichage(1, Afficheurs[Instructions   / 10]);	// Affichage dizaines
 		Affichage(2, Afficheurs[(Instructions) % 10]);	// Affichage unités
