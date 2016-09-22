@@ -135,8 +135,10 @@ void loop()
 		
 		faire_pulse(vitesse);							// fonction qui génère l'impulsion
 
-		Affichage(1, Afficheurs[vitesse   / 10]);		// Affichage dizaines
-		Affichage(2, Afficheurs[(vitesse) % 10]);		// Affichage unités
+		int Instructions = DIST * 4;
+
+		Affichage(1, Afficheurs[Instructions   / 10]);		// Affichage dizaines
+		Affichage(2, Afficheurs[(Instructions) % 10]);		// Affichage unités
 
 		while( (micros()-debut_periode) < 19999); 
 		// attendre les 20 millisecondes pour faire la période suivante 
