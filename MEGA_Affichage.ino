@@ -123,6 +123,14 @@ void EtatBoutons(){
 
 	memoire_plus = etat_bouton; //on enregistre l'état du bouton pour le tour suivant
 
+	if(DIST > 5){
+	    DIST = 5;
+	}
+
+	if(DIST < 0){
+	    DIST = 0;
+	}
+
 	//et maintenant pareil pour le bouton qui décrémente
 	etat_bouton = digitalRead(btn_minus); //lecture de son état
 	
