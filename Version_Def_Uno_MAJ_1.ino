@@ -123,9 +123,67 @@ void loop()
 {
 	while(1)
 	{
-		EtatBouton();									// On regarde ce qui se passe sur les boutons
+		etat_bouton = digitalRead(btn_plus);
 		
-		SortieTension();								// On traduit ça en tension sur le pin 11
+		if((etat_bouton != memoire_plus) && (etat_bouton == LOW)){
+			DIST++; //on incrémente la variable de la consigne
+		}
+
+		memoire_plus = etat_bouton; //on enregistre l'état du bouton pour le tour suivant
+
+		//et maintenant pareil pour le bouton qui décrémente
+		etat_bouton = digitalRead(btn_minus); //lecture de son état
+		
+		//Si le bouton a un état différent que celui enregistré ET que cet état est "appuyé"
+		if((etat_bouton != memoire_minus) && (etat_bouton == LOW)){
+			DIST--; //on décrémente la valeur de la consigne
+		}
+		memoire_minus = etat_bouton; //on enregistre l'état du bouton pour le tour suivant
+		
+		// on applique des limites au nombre pour ne pas dépasser 5
+		if(DIST > 5)
+		{
+			analogWrite (11, 85);
+			DIST = 5;
+		}
+
+		// on applique des limites au nombre pour ne pas aller en dessous de 0
+		if(DIST < 0)
+		{
+			analogWrite (11, 0);
+			DIST = 0;
+		}
+		
+		// ====== Ici, on indique les valeurs à envoyer par sortie_tension dans chaque cas
+		if(DIST < 1)
+		{
+			analogWrite (11, 0);
+		}
+		
+		if(DIST >= 1)
+		{
+			analogWrite (11, 34);
+		}
+		
+		if(DIST >= 2)
+		{
+			 analogWrite (11, 55);
+		}
+		
+		if(DIST >=3)
+		{
+			analogWrite (11, 65);
+		}
+		
+		if(DIST >=4)
+		{
+			analogWrite (11, 75);
+		}
+		
+		if(DIST >=5)
+		{
+			analogWrite (11, 85);
+		}
 			
 		analogReference(DEFAULT);
 
@@ -141,77 +199,6 @@ void loop()
 		Affichage(2, Afficheurs[(Instructions) % 10]);	// Affichage unités
 
 		while( (micros()-debut_periode) < 19999); 		// attendre les 20 millisecondes pour faire la période suivante 
-	}
-}
-
-
-// ****************************************************************************
-// *                       Instructions par les boutons                       *
-// ****************************************************************************
-
-void EtatBouton(){
-	etat_bouton = digitalRead(btn_plus);
-	
-	if((etat_bouton != memoire_plus) && (etat_bouton == LOW)){
-		DIST++; //on incrémente la variable de la consigne
-	}
-
-	memoire_plus = etat_bouton; //on enregistre l'état du bouton pour le tour suivant
-
-	//et maintenant pareil pour le bouton qui décrémente
-	etat_bouton = digitalRead(btn_minus); //lecture de son état
-	
-	//Si le bouton a un état différent que celui enregistré ET que cet état est "appuyé"
-	if((etat_bouton != memoire_minus) && (etat_bouton == LOW)){
-		DIST--; //on décrémente la valeur de la consigne
-	}
-	memoire_minus = etat_bouton; //on enregistre l'état du bouton pour le tour suivant
-}
-
-void SortieTension(){
-	// on applique des limites au nombre pour ne pas dépasser 5
-	if(DIST > 5)
-	{
-		analogWrite (11, 85);
-		DIST = 5;
-	}
-
-	// on applique des limites au nombre pour ne pas aller en dessous de 0
-	if(DIST < 0)
-	{
-		analogWrite (11, 0);
-		DIST = 0;
-	}
-	
-	// ====== Ici, on indique les valeurs à envoyer par sortie_tension dans chaque cas
-	if(DIST < 1)
-	{
-		analogWrite (11, 0);
-	}
-	
-	if(DIST >= 1)
-	{
-		analogWrite (11, 34);
-	}
-	
-	if(DIST >= 2)
-	{
-		 analogWrite (11, 55);
-	}
-	
-	if(DIST >=3)
-	{
-		analogWrite (11, 65);
-	}
-	
-	if(DIST >=4)
-	{
-		analogWrite (11, 75);
-	}
-	
-	if(DIST >=5)
-	{
-		analogWrite (11, 85);
 	}
 }
 
