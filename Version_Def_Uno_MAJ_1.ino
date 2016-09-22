@@ -27,6 +27,11 @@
 	D13		digit des unités "f"
 */
 
+// Il vire pin 7 et 11 ; 
+// renvoyer un code propre juste pour l afficheur et les boutons poussoirs
+
+// de l'autre côté tu as la partie moteur
+
 int vitesse = 0;			// Valeur de la mesure de la tension du potentionmère sur A0
 unsigned int temps_pulse;	// largeur d'impulsion de la sortie
 
