@@ -64,11 +64,7 @@ void setup()	 {
 
 	Serial.begin(9600);
 
-	// ==== Boutons
-	pinMode(btn_plus, INPUT);		
-	pinMode(btn_minus, INPUT);
-
-	// ==== Affichage
+	// ==== Initialisation des pins liés à l'affichage
 		pinMode(DIGIT_C1e, OUTPUT); //met la broche en sortie 
 		pinMode(DIGIT_C1d, OUTPUT); //met la broche en sortie 
 		pinMode(DIGIT_C1c, OUTPUT); //met la broche en sortie 
@@ -119,163 +115,6 @@ void setup()	 {
 
 	analogWrite(CmdeB1, LOW);
 }
-
-
-// ****************************************************************************
-// *                                 Affichage                                *
-// ****************************************************************************
-
-
-
-// ****************************************************************************
-// *                    Ensemble des fonctions d'affichage                    *
-// ****************************************************************************
-// Fonctions d'affichage
-	void C10(){
-		digitalWrite(DIGIT_C1a,1),digitalWrite(DIGIT_C1b,1),digitalWrite(DIGIT_C1c,1),digitalWrite(DIGIT_C1d,1);
-		digitalWrite(DIGIT_C1e,1),digitalWrite(DIGIT_C1f,1),digitalWrite(DIGIT_C1g,0); 
-	}
-
-	void C11(){
-		digitalWrite(DIGIT_C1a,0),digitalWrite(DIGIT_C1b,1),digitalWrite(DIGIT_C1c,1),digitalWrite(DIGIT_C1d,0);
-		digitalWrite(DIGIT_C1e,0),digitalWrite(DIGIT_C1f,0),digitalWrite(DIGIT_C1g,0); 
-	}
-
-	void C12(){
-		digitalWrite(DIGIT_C1a,1),digitalWrite(DIGIT_C1b,1),digitalWrite(DIGIT_C1c,0),digitalWrite(DIGIT_C1d,1);
-		digitalWrite(DIGIT_C1e,1),digitalWrite(DIGIT_C1f,0),digitalWrite(DIGIT_C1g,1);
-	}
-
-	//----------------------------------------------------------
-
-	void C20(){
-		digitalWrite(DIGIT_C2a,1),digitalWrite(DIGIT_C2b,1),digitalWrite(DIGIT_C2c,1),digitalWrite(DIGIT_C2d,1);
-		digitalWrite(DIGIT_C2e,1),digitalWrite(DIGIT_C2f,1),digitalWrite(DIGIT_C2g,0); 
-	}
-
-	void C21(){
-		digitalWrite(DIGIT_C2a,0),digitalWrite(DIGIT_C2b,1),digitalWrite(DIGIT_C2c,1),digitalWrite(DIGIT_C2d,0);
-		digitalWrite(DIGIT_C2e,0),digitalWrite(DIGIT_C2f,0),digitalWrite(DIGIT_C2g,0); 
-	}
-
-	void C22(){
-		digitalWrite(DIGIT_C2a,1),digitalWrite(DIGIT_C2b,1),digitalWrite(DIGIT_C2c,0),digitalWrite(DIGIT_C2d,1);
-		digitalWrite(DIGIT_C2e,1),digitalWrite(DIGIT_C2f,0),digitalWrite(DIGIT_C2g,1);
-	}
-
-	void C23(){
-		digitalWrite(DIGIT_C2a,1),digitalWrite(DIGIT_C2b,1),digitalWrite(DIGIT_C2c,1),digitalWrite(DIGIT_C2d,1);
-		digitalWrite(DIGIT_C2e,0),digitalWrite(DIGIT_C2f,0),digitalWrite(DIGIT_C2g,1); 
-	}
-
-	void C24(){
-		digitalWrite(DIGIT_C2a,0),digitalWrite(DIGIT_C2b,1),digitalWrite(DIGIT_C2c,1),digitalWrite(DIGIT_C2d,0);
-		digitalWrite(DIGIT_C2e,0),digitalWrite(DIGIT_C2f,1),digitalWrite(DIGIT_C2g,1); 
-	}
-
-	void C25(){
-		digitalWrite(DIGIT_C2a,1),digitalWrite(DIGIT_C2b,0),digitalWrite(DIGIT_C2c,1),digitalWrite(DIGIT_C2d,1);
-		digitalWrite(DIGIT_C2e,0),digitalWrite(DIGIT_C2f,1),digitalWrite(DIGIT_C2g,1); 
-	}
-
-	void C26(){
-		digitalWrite(DIGIT_C2a,1),digitalWrite(DIGIT_C2b,0),digitalWrite(DIGIT_C2c,1),digitalWrite(DIGIT_C2d,1);
-		digitalWrite(DIGIT_C2e,1),digitalWrite(DIGIT_C2f,1),digitalWrite(DIGIT_C2g,1);
-	}
-
-	void C27(){
-		digitalWrite(DIGIT_C2a,1),digitalWrite(DIGIT_C2b,1),digitalWrite(DIGIT_C2c,1),digitalWrite(DIGIT_C2d,0);
-		digitalWrite(DIGIT_C2e,0),digitalWrite(DIGIT_C2f,0),digitalWrite(DIGIT_C2g,0); 
-	}
-
-	void C28(){
-		digitalWrite(DIGIT_C2a,1),digitalWrite(DIGIT_C2b,1),digitalWrite(DIGIT_C2c,1),digitalWrite(DIGIT_C2d,1);
-		digitalWrite(DIGIT_C2e,1),digitalWrite(DIGIT_C2f,1),digitalWrite(DIGIT_C2g,1);
-	}
-
-	void C29(){
-		digitalWrite(DIGIT_C2a,1),digitalWrite(DIGIT_C2b,1),digitalWrite(DIGIT_C2c,1),digitalWrite(DIGIT_C2d,1);
-		digitalWrite(DIGIT_C2e,0),digitalWrite(DIGIT_C2f,1),digitalWrite(DIGIT_C2g,1); 
-	}
-
-	//----------------------------------------------------------
-
-	void V10(){
-		digitalWrite(DIGIT_V1a,1),digitalWrite(DIGIT_V1b,1),digitalWrite(DIGIT_V1c,1),digitalWrite(DIGIT_V1d,1);
-		digitalWrite(DIGIT_V1e,1),digitalWrite(DIGIT_V1f,1),digitalWrite(DIGIT_V1g,0); 
-	}
-
-	void V11(){
-		digitalWrite(DIGIT_V1a,0),digitalWrite(DIGIT_V1b,1),digitalWrite(DIGIT_V1c,1),digitalWrite(DIGIT_V1d,0);
-		digitalWrite(DIGIT_V1e,0),digitalWrite(DIGIT_V1f,0),digitalWrite(DIGIT_V1g,0); 
-	}
-
-	void V12(){
-		digitalWrite(DIGIT_V1a,1),digitalWrite(DIGIT_V1b,1),digitalWrite(DIGIT_V1c,0),digitalWrite(DIGIT_V1d,1);
-		digitalWrite(DIGIT_V1e,1),digitalWrite(DIGIT_V1f,0),digitalWrite(DIGIT_V1g,1);
-	}
-
-	// --------------------------------------------------------------
-
-	void V20(){
-		digitalWrite(DIGIT_V2a,1),digitalWrite(DIGIT_V2b,1),digitalWrite(DIGIT_V2c,1),digitalWrite(DIGIT_V2d,1);
-		digitalWrite(DIGIT_V2e,1),digitalWrite(DIGIT_V2f,1),digitalWrite(DIGIT_V2g,0),digitalWrite(DIGIT_V2dp,1); 
-	}
-
-	void V21(){
-		digitalWrite(DIGIT_V2a,0),digitalWrite(DIGIT_V2b,1),digitalWrite(DIGIT_V2c,1),digitalWrite(DIGIT_V2d,0);
-		digitalWrite(DIGIT_V2e,0),digitalWrite(DIGIT_V2f,0),digitalWrite(DIGIT_V2g,0),digitalWrite(DIGIT_V2dp,1); 
-	}
-
-	void V22(){
-		digitalWrite(DIGIT_V2a,1),digitalWrite(DIGIT_V2b,1),digitalWrite(DIGIT_V2c,0),digitalWrite(DIGIT_V2d,1);
-		digitalWrite(DIGIT_V2e,1),digitalWrite(DIGIT_V2f,0),digitalWrite(DIGIT_V2g,1),digitalWrite(DIGIT_V2dp,1);
-	}
-
-	void V23(){
-		digitalWrite(DIGIT_V2a,1),digitalWrite(DIGIT_V2b,1),digitalWrite(DIGIT_V2c,1),digitalWrite(DIGIT_V2d,1);
-		digitalWrite(DIGIT_V2e,0),digitalWrite(DIGIT_V2f,0),digitalWrite(DIGIT_V2g,1),digitalWrite(DIGIT_V2dp,1);
-	}
-		
-	void V24(){
-		digitalWrite(DIGIT_V2a,0),digitalWrite(DIGIT_V2b,1),digitalWrite(DIGIT_V2c,1),digitalWrite(DIGIT_V2d,0);
-		digitalWrite(DIGIT_V2e,0),digitalWrite(DIGIT_V2f,1),digitalWrite(DIGIT_V2g,1),digitalWrite(DIGIT_V2dp,1); 
-	}
-
-	void V25(){
-		digitalWrite(DIGIT_V2a,1),digitalWrite(DIGIT_V2b,0),digitalWrite(DIGIT_V2c,1),digitalWrite(DIGIT_V2d,1);
-		digitalWrite(DIGIT_V2e,0),digitalWrite(DIGIT_V2f,1),digitalWrite(DIGIT_V2g,1),digitalWrite(DIGIT_V2dp,1);
-	}
-		
-	void V26(){
-		digitalWrite(DIGIT_V2a,1),digitalWrite(DIGIT_V2b,0),digitalWrite(DIGIT_V2c,1),digitalWrite(DIGIT_V2d,1);
-		digitalWrite(DIGIT_V2e,1),digitalWrite(DIGIT_V2f,1),digitalWrite(DIGIT_V2g,1),digitalWrite(DIGIT_V2dp,1);
-	}
-
-	void V27(){
-		digitalWrite(DIGIT_V2a,1),digitalWrite(DIGIT_V2b,1),digitalWrite(DIGIT_V2c,1),digitalWrite(DIGIT_V2d,0);
-		digitalWrite(DIGIT_V2e,0),digitalWrite(DIGIT_V2f,0),digitalWrite(DIGIT_V2g,0),digitalWrite(DIGIT_V2dp,1);
-	}
-
-	void V28(){
-		digitalWrite(DIGIT_V2a,1),digitalWrite(DIGIT_V2b,1),digitalWrite(DIGIT_V2c,1),digitalWrite(DIGIT_V2d,1);
-		digitalWrite(DIGIT_V2e,1),digitalWrite(DIGIT_V2f,1),digitalWrite(DIGIT_V2g,1),digitalWrite(DIGIT_V2dp,1);
-	}
-
-	void V29(){
-		digitalWrite(DIGIT_V2a,1),digitalWrite(DIGIT_V2b,1),digitalWrite(DIGIT_V2c,1),digitalWrite(DIGIT_V2d,1);
-		digitalWrite(DIGIT_V2e,0),digitalWrite(DIGIT_V2f,1),digitalWrite(DIGIT_V2g,1),digitalWrite(DIGIT_V2dp,1);
-	}
-
-	void V30(){
-		digitalWrite(DIGIT_V3a,1),digitalWrite(DIGIT_V3b,1),digitalWrite(DIGIT_V3c,1),digitalWrite(DIGIT_V3d,1);
-		digitalWrite(DIGIT_V3e,1),digitalWrite(DIGIT_V3f,1),digitalWrite(DIGIT_V3g,0); 
-	}
-
-	void V35(){
-		digitalWrite(DIGIT_V3a,1),digitalWrite(DIGIT_V3b,0),digitalWrite(DIGIT_V3c,1),digitalWrite(DIGIT_V3d,1);
-		digitalWrite(DIGIT_V3e,0),digitalWrite(DIGIT_V3f,1),digitalWrite(DIGIT_V3g,1);
-	}
 
 
 // ****************************************************************************
@@ -529,3 +368,150 @@ void Affichage(){
 		V12(), V20(), V35();
 		}
 }
+
+// Fonctions d'affichage
+	void C10(){
+		digitalWrite(DIGIT_C1a,1),digitalWrite(DIGIT_C1b,1),digitalWrite(DIGIT_C1c,1),digitalWrite(DIGIT_C1d,1);
+		digitalWrite(DIGIT_C1e,1),digitalWrite(DIGIT_C1f,1),digitalWrite(DIGIT_C1g,0); 
+	}
+
+	void C11(){
+		digitalWrite(DIGIT_C1a,0),digitalWrite(DIGIT_C1b,1),digitalWrite(DIGIT_C1c,1),digitalWrite(DIGIT_C1d,0);
+		digitalWrite(DIGIT_C1e,0),digitalWrite(DIGIT_C1f,0),digitalWrite(DIGIT_C1g,0); 
+	}
+
+	void C12(){
+		digitalWrite(DIGIT_C1a,1),digitalWrite(DIGIT_C1b,1),digitalWrite(DIGIT_C1c,0),digitalWrite(DIGIT_C1d,1);
+		digitalWrite(DIGIT_C1e,1),digitalWrite(DIGIT_C1f,0),digitalWrite(DIGIT_C1g,1);
+	}
+
+	//----------------------------------------------------------
+
+	void C20(){
+		digitalWrite(DIGIT_C2a,1),digitalWrite(DIGIT_C2b,1),digitalWrite(DIGIT_C2c,1),digitalWrite(DIGIT_C2d,1);
+		digitalWrite(DIGIT_C2e,1),digitalWrite(DIGIT_C2f,1),digitalWrite(DIGIT_C2g,0); 
+	}
+
+	void C21(){
+		digitalWrite(DIGIT_C2a,0),digitalWrite(DIGIT_C2b,1),digitalWrite(DIGIT_C2c,1),digitalWrite(DIGIT_C2d,0);
+		digitalWrite(DIGIT_C2e,0),digitalWrite(DIGIT_C2f,0),digitalWrite(DIGIT_C2g,0); 
+	}
+
+	void C22(){
+		digitalWrite(DIGIT_C2a,1),digitalWrite(DIGIT_C2b,1),digitalWrite(DIGIT_C2c,0),digitalWrite(DIGIT_C2d,1);
+		digitalWrite(DIGIT_C2e,1),digitalWrite(DIGIT_C2f,0),digitalWrite(DIGIT_C2g,1);
+	}
+
+	void C23(){
+		digitalWrite(DIGIT_C2a,1),digitalWrite(DIGIT_C2b,1),digitalWrite(DIGIT_C2c,1),digitalWrite(DIGIT_C2d,1);
+		digitalWrite(DIGIT_C2e,0),digitalWrite(DIGIT_C2f,0),digitalWrite(DIGIT_C2g,1); 
+	}
+
+	void C24(){
+		digitalWrite(DIGIT_C2a,0),digitalWrite(DIGIT_C2b,1),digitalWrite(DIGIT_C2c,1),digitalWrite(DIGIT_C2d,0);
+		digitalWrite(DIGIT_C2e,0),digitalWrite(DIGIT_C2f,1),digitalWrite(DIGIT_C2g,1); 
+	}
+
+	void C25(){
+		digitalWrite(DIGIT_C2a,1),digitalWrite(DIGIT_C2b,0),digitalWrite(DIGIT_C2c,1),digitalWrite(DIGIT_C2d,1);
+		digitalWrite(DIGIT_C2e,0),digitalWrite(DIGIT_C2f,1),digitalWrite(DIGIT_C2g,1); 
+	}
+
+	void C26(){
+		digitalWrite(DIGIT_C2a,1),digitalWrite(DIGIT_C2b,0),digitalWrite(DIGIT_C2c,1),digitalWrite(DIGIT_C2d,1);
+		digitalWrite(DIGIT_C2e,1),digitalWrite(DIGIT_C2f,1),digitalWrite(DIGIT_C2g,1);
+	}
+
+	void C27(){
+		digitalWrite(DIGIT_C2a,1),digitalWrite(DIGIT_C2b,1),digitalWrite(DIGIT_C2c,1),digitalWrite(DIGIT_C2d,0);
+		digitalWrite(DIGIT_C2e,0),digitalWrite(DIGIT_C2f,0),digitalWrite(DIGIT_C2g,0); 
+	}
+
+	void C28(){
+		digitalWrite(DIGIT_C2a,1),digitalWrite(DIGIT_C2b,1),digitalWrite(DIGIT_C2c,1),digitalWrite(DIGIT_C2d,1);
+		digitalWrite(DIGIT_C2e,1),digitalWrite(DIGIT_C2f,1),digitalWrite(DIGIT_C2g,1);
+	}
+
+	void C29(){
+		digitalWrite(DIGIT_C2a,1),digitalWrite(DIGIT_C2b,1),digitalWrite(DIGIT_C2c,1),digitalWrite(DIGIT_C2d,1);
+		digitalWrite(DIGIT_C2e,0),digitalWrite(DIGIT_C2f,1),digitalWrite(DIGIT_C2g,1); 
+	}
+
+	//----------------------------------------------------------
+
+	void V10(){
+		digitalWrite(DIGIT_V1a,1),digitalWrite(DIGIT_V1b,1),digitalWrite(DIGIT_V1c,1),digitalWrite(DIGIT_V1d,1);
+		digitalWrite(DIGIT_V1e,1),digitalWrite(DIGIT_V1f,1),digitalWrite(DIGIT_V1g,0); 
+	}
+
+	void V11(){
+		digitalWrite(DIGIT_V1a,0),digitalWrite(DIGIT_V1b,1),digitalWrite(DIGIT_V1c,1),digitalWrite(DIGIT_V1d,0);
+		digitalWrite(DIGIT_V1e,0),digitalWrite(DIGIT_V1f,0),digitalWrite(DIGIT_V1g,0); 
+	}
+
+	void V12(){
+		digitalWrite(DIGIT_V1a,1),digitalWrite(DIGIT_V1b,1),digitalWrite(DIGIT_V1c,0),digitalWrite(DIGIT_V1d,1);
+		digitalWrite(DIGIT_V1e,1),digitalWrite(DIGIT_V1f,0),digitalWrite(DIGIT_V1g,1);
+	}
+
+	// --------------------------------------------------------------
+
+	void V20(){
+		digitalWrite(DIGIT_V2a,1),digitalWrite(DIGIT_V2b,1),digitalWrite(DIGIT_V2c,1),digitalWrite(DIGIT_V2d,1);
+		digitalWrite(DIGIT_V2e,1),digitalWrite(DIGIT_V2f,1),digitalWrite(DIGIT_V2g,0),digitalWrite(DIGIT_V2dp,1); 
+	}
+
+	void V21(){
+		digitalWrite(DIGIT_V2a,0),digitalWrite(DIGIT_V2b,1),digitalWrite(DIGIT_V2c,1),digitalWrite(DIGIT_V2d,0);
+		digitalWrite(DIGIT_V2e,0),digitalWrite(DIGIT_V2f,0),digitalWrite(DIGIT_V2g,0),digitalWrite(DIGIT_V2dp,1); 
+	}
+
+	void V22(){
+		digitalWrite(DIGIT_V2a,1),digitalWrite(DIGIT_V2b,1),digitalWrite(DIGIT_V2c,0),digitalWrite(DIGIT_V2d,1);
+		digitalWrite(DIGIT_V2e,1),digitalWrite(DIGIT_V2f,0),digitalWrite(DIGIT_V2g,1),digitalWrite(DIGIT_V2dp,1);
+	}
+
+	void V23(){
+		digitalWrite(DIGIT_V2a,1),digitalWrite(DIGIT_V2b,1),digitalWrite(DIGIT_V2c,1),digitalWrite(DIGIT_V2d,1);
+		digitalWrite(DIGIT_V2e,0),digitalWrite(DIGIT_V2f,0),digitalWrite(DIGIT_V2g,1),digitalWrite(DIGIT_V2dp,1);
+	}
+		
+	void V24(){
+		digitalWrite(DIGIT_V2a,0),digitalWrite(DIGIT_V2b,1),digitalWrite(DIGIT_V2c,1),digitalWrite(DIGIT_V2d,0);
+		digitalWrite(DIGIT_V2e,0),digitalWrite(DIGIT_V2f,1),digitalWrite(DIGIT_V2g,1),digitalWrite(DIGIT_V2dp,1); 
+	}
+
+	void V25(){
+		digitalWrite(DIGIT_V2a,1),digitalWrite(DIGIT_V2b,0),digitalWrite(DIGIT_V2c,1),digitalWrite(DIGIT_V2d,1);
+		digitalWrite(DIGIT_V2e,0),digitalWrite(DIGIT_V2f,1),digitalWrite(DIGIT_V2g,1),digitalWrite(DIGIT_V2dp,1);
+	}
+		
+	void V26(){
+		digitalWrite(DIGIT_V2a,1),digitalWrite(DIGIT_V2b,0),digitalWrite(DIGIT_V2c,1),digitalWrite(DIGIT_V2d,1);
+		digitalWrite(DIGIT_V2e,1),digitalWrite(DIGIT_V2f,1),digitalWrite(DIGIT_V2g,1),digitalWrite(DIGIT_V2dp,1);
+	}
+
+	void V27(){
+		digitalWrite(DIGIT_V2a,1),digitalWrite(DIGIT_V2b,1),digitalWrite(DIGIT_V2c,1),digitalWrite(DIGIT_V2d,0);
+		digitalWrite(DIGIT_V2e,0),digitalWrite(DIGIT_V2f,0),digitalWrite(DIGIT_V2g,0),digitalWrite(DIGIT_V2dp,1);
+	}
+
+	void V28(){
+		digitalWrite(DIGIT_V2a,1),digitalWrite(DIGIT_V2b,1),digitalWrite(DIGIT_V2c,1),digitalWrite(DIGIT_V2d,1);
+		digitalWrite(DIGIT_V2e,1),digitalWrite(DIGIT_V2f,1),digitalWrite(DIGIT_V2g,1),digitalWrite(DIGIT_V2dp,1);
+	}
+
+	void V29(){
+		digitalWrite(DIGIT_V2a,1),digitalWrite(DIGIT_V2b,1),digitalWrite(DIGIT_V2c,1),digitalWrite(DIGIT_V2d,1);
+		digitalWrite(DIGIT_V2e,0),digitalWrite(DIGIT_V2f,1),digitalWrite(DIGIT_V2g,1),digitalWrite(DIGIT_V2dp,1);
+	}
+
+	void V30(){
+		digitalWrite(DIGIT_V3a,1),digitalWrite(DIGIT_V3b,1),digitalWrite(DIGIT_V3c,1),digitalWrite(DIGIT_V3d,1);
+		digitalWrite(DIGIT_V3e,1),digitalWrite(DIGIT_V3f,1),digitalWrite(DIGIT_V3g,0); 
+	}
+
+	void V35(){
+		digitalWrite(DIGIT_V3a,1),digitalWrite(DIGIT_V3b,0),digitalWrite(DIGIT_V3c,1),digitalWrite(DIGIT_V3d,1);
+		digitalWrite(DIGIT_V3e,0),digitalWrite(DIGIT_V3f,1),digitalWrite(DIGIT_V3g,1);
+	}
