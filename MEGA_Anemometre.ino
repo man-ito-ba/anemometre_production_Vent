@@ -1,56 +1,56 @@
 // ==== Pins liés à l'affichage
-	const int DIGIT_C1e=17; //declaration constante de broche 
-	const int DIGIT_C1d=18; //declaration constante de broche 
-	const int DIGIT_C1c=19; //declaration constante de broche 
-	const int DIGIT_C1g=15; //declaration constante de broche 
-	const int DIGIT_C1f=16; //declaration constante de broche 
-	const int DIGIT_C1a=21; //declaration constante de broche 
-	const int DIGIT_C1b=20; //declaration constante de broche 
+	const int DIGIT_C1e=17;
+	const int DIGIT_C1d=18;
+	const int DIGIT_C1c=19;
+	const int DIGIT_C1g=15;
+	const int DIGIT_C1f=16;
+	const int DIGIT_C1a=21;
+	const int DIGIT_C1b=20;
 
-	const int DIGIT_C2e=26; //declaration constante de broche 
-	const int DIGIT_C2d=25; //declaration constante de broche 
-	const int DIGIT_C2c=24; //declaration constante de broche 
-	const int DIGIT_C2g=28; //declaration constante de broche 
-	const int DIGIT_C2f=27; //declaration constante de broche 
-	const int DIGIT_C2a=22; //declaration constante de broche 
-	const int DIGIT_C2b=23; //declaration constante de broche 
+	const int DIGIT_C2e=26;
+	const int DIGIT_C2d=25;
+	const int DIGIT_C2c=24;
+	const int DIGIT_C2g=28;
+	const int DIGIT_C2f=27;
+	const int DIGIT_C2a=22;
+	const int DIGIT_C2b=23;
 
-	const int DIGIT_V1e=34; //declaration constante de broche 
-	const int DIGIT_V1d=33; //declaration constante de broche 
-	const int DIGIT_V1c=32; //declaration constante de broche 
-	const int DIGIT_V1g=36; //declaration constante de broche 
-	const int DIGIT_V1f=35; //declaration constante de broche 
-	const int DIGIT_V1a=30; //declaration constante de broche 
-	const int DIGIT_V1b=31; //declaration constante de broche 
+	const int DIGIT_V1e=34;
+	const int DIGIT_V1d=33;
+	const int DIGIT_V1c=32;
+	const int DIGIT_V1g=36;
+	const int DIGIT_V1f=35;
+	const int DIGIT_V1a=30;
+	const int DIGIT_V1b=31;
 
-	const int DIGIT_V2e=42; //declaration constante de broche 
-	const int DIGIT_V2d=41; //declaration constante de broche 
-	const int DIGIT_V2c=40; //declaration constante de broche 
-	const int DIGIT_V2dp=45; //declaration constante de broche 
-	const int DIGIT_V2g=44; //declaration constante de broche 
-	const int DIGIT_V2f=43; //declaration constante de broche 
-	const int DIGIT_V2a=38; //declaration constante de broche 
+	const int DIGIT_V2e=42;
+	const int DIGIT_V2d=41;
+	const int DIGIT_V2c=40;
+	const int DIGIT_V2dp=45;
+	const int DIGIT_V2g=44;
+	const int DIGIT_V2f=43;
+	const int DIGIT_V2a=38;
 	const int DIGIT_V2b=39; //declaration constante de broche
 
-	const int DIGIT_V3e=50; //declaration constante de broche 
-	const int DIGIT_V3d=49; //declaration constante de broche 
-	const int DIGIT_V3c=48; //declaration constante de broche 
-	const int DIGIT_V3g=52; //declaration constante de broche 
-	const int DIGIT_V3f=51; //declaration constante de broche 
-	const int DIGIT_V3a=46; //declaration constante de broche 
+	const int DIGIT_V3e=50;
+	const int DIGIT_V3d=49;
+	const int DIGIT_V3c=48;
+	const int DIGIT_V3g=52;
+	const int DIGIT_V3f=51;
+	const int DIGIT_V3a=46;
 	const int DIGIT_V3b=47; //declaration constante de broche
 
 const int LEDVt = A6;
 const int LEDRg = A7;
 
-int CmdeB1=A5; //declaration constante de broche 
-int CmdeB2=A1; //declaration constante de broche 
-int CmdeB3=A2; //declaration constante de broche 
+int CmdeB1=A5;
+int CmdeB2=A1;
+int CmdeB3=A2;
 
 // Variables destinées au calcul de la moyenne
-const int NbLectures = 5;						// à modifier pour augmenter temps de calcul de moyenne ; Définit le nombre d'échantillons à conserver pour calculer la moyenne ; plus le chiffre est elevé, plus le tableau sera "lissé", mais plus le programme sera lent. Utiliser une constante plutôt qu'une variable normale permet d'utiliser cette valeur pour déterminer la taille du tableau. J'ai réduit à 5 pour accélérer le programme.
-int Tableau[NbLectures];						// Tableau recevant les signaux analogiques
-int IndexTableau = 0;							// l'index de position du tableau
+const int NbLectures = 5;	// à modifier pour augmenter temps de calcul de moyenne ; Définit le nombre d'échantillons à conserver pour calculer la moyenne ; plus le chiffre est elevé, plus le tableau sera "lissé", mais plus le programme sera lent. Utiliser une constante plutôt qu'une variable normale permet d'utiliser cette valeur pour déterminer la taille du tableau. J'ai réduit à 5 pour accélérer le programme.
+int Tableau[NbLectures];	// Tableau recevant le nombre de signaux analogiques définit juste au dessus par la variable NbLectures
+int IndexTableau = 0;		// l'index de position du tableau
 int Total;
 int Moyenne;
 
@@ -60,9 +60,7 @@ int Moyenne;
 // ****************************************************************************
 
 void setup()	 {
-	Moyenne, Total = 0;
-
-	Serial.begin(9600);
+	Moyenne, Total = 0;				// Mise à zéro des variables pour éviter les résultats aléatoires (ça arrive parfois quand on le fait pas)
 
 	// ==== Initialisation des pins liés à l'affichage
 		pinMode(DIGIT_C1e, OUTPUT); //met la broche en sortie 
@@ -113,7 +111,7 @@ void setup()	 {
 		pinMode(CmdeB2, OUTPUT); //met la broche en sortie 
 		pinMode(CmdeB3, OUTPUT); //met la broche en sortie 
 
-	analogWrite(CmdeB1, LOW);
+	analogWrite(CmdeB1, LOW);		// ???
 }
 
 
@@ -134,15 +132,9 @@ void loop(){
 void LectureBatteries(){
 	int MV1 = analogRead(A4);
 	float MV1b = (MV1 * (5.000 / 1022)*1000); //valeur en MILIVOLT
-	//Serial.print("Tension Batt 1 = ");
-	//Serial.print(MV1b);
-	//Serial.println("mV");
 	
 	int MV2 = analogRead(A3);
 	float MV2b = (MV2 * (5.000 / 1022)*1000); //valeur en MILIVOLT
-	//Serial.print("Tension Batt 2 = ");
-	//Serial.print(MV2b);
-	//Serial.println("mV");
 
 	if(MV1b > 4900)
 	{

@@ -1,37 +1,6 @@
 // Contrôle commande de moteur brushless de modélisme
 // Sortie des impulsions vers le contrôleur par D13.
 
-
-/*	Un point sur les branchements
-
-	A0		distance
-	A1
-	A2		btn_plus
-	A3		btn_minus
-	A4		digit des dizaines "e"
-	A5		digit des dizaines "d"
-
-	D0		digit des dizaines "f"
-	D1		digit des unités "a"
-	D2		digit des dizaines "c"
-	D3		digit des dizaines "b"
-	D4		digit des dizaines "a"
-	D5		digit des dizaines "g"
-	D6		digit des unités "e"
-	D7		digit des unités "c"
-	D8		digit des unités "d"
-	D9		sortie_servo
-	D10		digit des unités "b"
-	D11		sortie_tension
-	D12		digit des unités "g"
-	D13		digit des unités "f"
-*/
-
-// Il vire pin 7 et 11 ; 
-// renvoyer un code propre juste pour l afficheur et les boutons poussoirs
-
-// de l'autre côté tu as la partie moteur
-
 int vitesse = 0;			// Valeur de la mesure de la tension du potentionmère sur A0
 unsigned int temps_pulse;	// largeur d'impulsion de la sortie
 
@@ -58,13 +27,13 @@ int memoire_minus = HIGH;
 void mesures(void) // fonction appelée pour mesurer l'entrée analogique
 {
 	vitesse = 0;
+	
 	//la valeur nommée vitesse est moyennée pour diminuer l'effet du bruit de cette valeur analogique
 	for(int ii=0; ii<16; ii++)
 	{
 		vitesse += analogRead(distance); 	// Notation qui équivaut à écrire : "vitesse = vitesse + analogRead(distance);"
 	}
 	vitesse = (vitesse >> 4);				// Alors ça c'est un bitshift right si j'ai bien suivi, c.à.d. une autre façon d'effectuer une multiplication (ici, par 4). D'après mes recherches, utiliser le signe de multiplication dans ce type de cas est bien plus clair pour ceux qui relisent le code, et absolument **aussi pratique**.
-	// vitesse = vitesse * 4;
 }
 
 
