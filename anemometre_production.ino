@@ -124,7 +124,6 @@ void setup() {
 	digitalWrite(A4, LOW);
 	pinMode(A5, OUTPUT);
 	digitalWrite(A5, LOW);
-
 }
 
 
